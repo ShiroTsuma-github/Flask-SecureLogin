@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    {% for mesg in get_flashed_messages() %}
+    <h1>{{ mesg }}</h1>
+{% endfor %}
+    <h1>LOGIN</h1>
+{% from "_util.html" import render_field %}
+<form id="loginForm" class="form form-register" method="POST" action="" role="form">
+    {{ form.hidden_tag }}
+    {{ render_field(form.email, placeholder="email") }}<br>
+    {{ render_field(form.password, placeholder="password") }}<br>
+    <p><input class="btn btn-default btn-submit" type="submit" value="Login"></p>
+</form>
+<form id="resetForm" action="/reset_token" method="post">
+    <button onclick="promptForCredentials(event)" type="submit">I Forgot Password</button>
+</form>
+<a href="/">index</a><br>
+<a href="/register">register</a><br>
+
+</body>
+</html>
+
+<script>
+    function promptForCredentials(event) {
+        event.preventDefault(); // Prevent form submission until we gather the inputs
+
+        // Ask for email and token
+        var email = prompt("Please enter your email:");
+        var token = prompt("Please enter your token:");
+
+        if (email && token) {
+            // If both email and token are provided, create hidden inputs and submit the form
+            var form = document.getElementById("resetForm");
+
+            // Create hidden input fields
+            var emailInput = document.createElement("input");
+            emailInput.type = "hidden";
+            emailInput.name = "email";
+            emailInput.value = email;
+
+            var tokenInput = document.createElement("input");
+            tokenInput.type = "hidden";
+            tokenInput.name = "token";
+            tokenInput.value = token;
+
+            // Append hidden inputs to the form
+            form.appendChild(emailInput);
+            form.appendChild(tokenInput);
+
+            // Submit the form
+            form.submit();
+        } else {
+            alert("Both email and token are required.");
+        }
+    }
+</script>

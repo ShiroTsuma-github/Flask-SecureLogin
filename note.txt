@@ -1,0 +1,1 @@
+na windows wymaga c++ tools, tc i openssl, wiec nie przetestowane. na debian dziala normalnie

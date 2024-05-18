@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>CHANGE PASSWORD</h1>
+
+{% from "_util.html" import render_field %}
+<form id="loginForm" class="form form-register" method="POST" action="" role="form">
+    {{ form.hidden_tag }}
+    {{ render_field(form.password, placeholder="Old Password") }}<br>
+    {{ render_field(form.new_password, placeholder="Password") }}<br>
+    {{ render_field(form.confirm, placeholder="Password (again)") }}<br>
+    <p><input class="btn btn-default btn-submit" type="submit" value="Change"></p>
+</form>
+
+<a href="/">index</a><br>
+<a href="/home">home</a><br>
+
+</body>
+</html>
